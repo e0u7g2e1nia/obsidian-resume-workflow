@@ -1,6 +1,14 @@
 \documentclass[10pt,a4paper]{ctexart}
 
-\usepackage[left=1.35cm,right=1.35cm,top=0.72cm,bottom=0.55cm]{geometry}
+% ===== 中文一页简历 LaTeX 模板 =====
+% 使用方式：
+% 1. Markdown 简历是内容母版，LaTeX 只负责排版。
+% 2. 将具体内容填入本模板后，用 tectonic 编译：tectonic 文件名.tex
+% 3. 项目标题行格式为：左侧项目名｜角色，中间工具标签组，右侧时间。
+% 4. 如果某段经历没有工具标签，第三个参数留空：\entry{标题}{时间}{}
+% 5. 证件照默认与 tex 放在同一目录，文件名可在 \includegraphics 处替换。
+
+\usepackage[left=1.18cm,right=1.18cm,top=0.58cm,bottom=0.48cm]{geometry}
 \usepackage{tabularx}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
@@ -11,28 +19,29 @@
 \usepackage{array}
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5pt}
-\setlist[itemize]{leftmargin=1.35em, itemsep=0pt, topsep=0pt, parsep=0pt}
-\linespread{0.97}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{0pt}
+\setlist[itemize]{leftmargin=1.22em, itemsep=0.85pt, topsep=0.45pt, parsep=0pt, partopsep=0pt}
+\linespread{1.095}
 
+% ===== 标签样式 =====
 \definecolor{tagBlue}{HTML}{4A90FF}
 \definecolor{tagBg}{HTML}{EAF2FF}
 \definecolor{toolBlue}{HTML}{3F6FAF}
-\newcommand{\eduTag}[1]{\begingroup\setlength{\fboxsep}{2pt}\colorbox{tagBg}{\textcolor{tagBlue}{\textbf{#1}}}\endgroup}
+\newcommand{\eduTag}[1]{\begingroup\setlength{\fboxsep}{1.8pt}\colorbox{tagBg}{\textcolor{tagBlue}{\textbf{#1}}}\endgroup}
 \newcommand{\toolTag}[1]{\begingroup\setlength{\fboxsep}{1.25pt}\colorbox{tagBg}{\textcolor{toolBlue}{#1}}\endgroup}
 
+% ===== 分区标题样式 =====
 \titleformat{\section}
   {\large\bfseries}
-  {}{0pt}{}[\vspace{1pt}\titlerule]
-\titlespacing*{\section}{0pt}{4pt}{2pt}
+  {}{0pt}{}[\vspace{0.6pt}\titlerule]
+\titlespacing*{\section}{0pt}{2.6pt}{1.4pt}
 
+% ===== 经历条目样式 =====
 \newlength{\entryTitleWidth}
 \newlength{\entryDateWidth}
 \newlength{\entryToolWidth}
 \newcommand{\resumeItem}[2]{\item \textbf{#1：}#2}
-% Entry format: left title, centered tool/status tags, right date.
-% Usage: \entry{项目名称｜角色}{时间}{\toolTag{工具1}\hspace{0.18em}\toolTag{工具2}}
-% If no middle tags are needed, pass an empty third argument: \entry{标题}{时间}{}
 \newcommand{\entry}[3]{%
   \settowidth{\entryTitleWidth}{\textbf{#1}}%
   \settowidth{\entryDateWidth}{#2}%
@@ -45,56 +54,77 @@
 
 \begin{document}
 \pagestyle{empty}
-\fontsize{9.6pt}{10.9pt}\selectfont
+\fontsize{8.48pt}{10.55pt}\selectfont
 
-\begin{minipage}[t]{0.78\textwidth}
-  {\LARGE \textbf{姓名}}\\[2pt]
-  电话：手机号｜邮箱：\href{mailto:email@example.com}{email@example.com}｜微信：微信号\\
-  现居城市：城市｜可立即到岗｜每周 5 天｜可实习 6 个月及以上
+% ===== 个人信息区 =====
+\begin{minipage}[t]{0.79\textwidth}
+  {\LARGE \textbf{姓名}}\\[1pt]
+  学校｜专业｜届别\\
+  手机：手机号｜邮箱：email\_example@example.com｜微信：微信号\\
+  求职方向：AI产品 / 内容产品 / 产品运营 / 内容运营\\
+  状态：城市｜立即到岗｜每周5天｜6个月及以上\\
+  作品集：作品集链接
 \end{minipage}
 \hfill
-\begin{minipage}[t]{0.16\textwidth}
-  \vspace{-8pt}
-  \raggedleft\includegraphics[width=2.2cm]{resume-photo-from-old.png}
+\begin{minipage}[t]{0.15\textwidth}
+  \vspace{-7pt}
+  \raggedleft\includegraphics[width=2.05cm]{resume-photo-from-old.png}
 \end{minipage}
-\vspace{0pt}
+\vspace{-1pt}
 
-% 教育背景固定版式：
-% 1. 第一行：左侧学校名 + 浅蓝标签（985 / 双一流），右侧起止时间。
-% 2. 第二行：左侧专业、本科、学院、全日制，右侧城市。
-% 3. 之后分行写 GPA/排名、荣誉奖项、主要课程。
-% 不要压缩成一条长横排信息。
+% ===== 教育背景固定版式 =====
+% 1. 第一行：学校名 + 985 / 双一流标签，右侧起止时间。
+% 2. 第二行：专业、本科、学院、全日制，右侧城市。
+% 3. 后续分行写 GPA/排名、荣誉奖项、主要课程。
 \section*{教育背景}
+\textbf{学校名称}\hspace{0.4em}\eduTag{985}\hspace{0.25em}\eduTag{双一流}\hfill 2023年09月 -- 2027年07月\\[-1pt]
+专业 本科｜学院 全日制\hfill 城市\\[-1pt]
+GPA：3.90/4.0（专业第二）\\[-1pt]
+荣誉奖项：国家奖学金、二等奖学金、三等奖学金\\[-1pt]
+主要课程：课程1、课程2、课程3、课程4
 
-\textbf{学校名称}\hspace{0.4em}\eduTag{985}\hspace{0.25em}\eduTag{双一流}\hfill 2023年09月 -- 2027年07月\\
-专业 本科｜学院 全日制\hfill 城市\\
-GPA：3.90/4.0（专业第二）\\
-荣誉奖项：国家奖学金（2024-2025年度）、二等奖学金（2023-2024年度）、三等奖学金（2022-2023年度）\\
-主要课程：社会统计学、统计软件应用、社会调查方法、质性研究方法
-
-
+% ===== 项目经历 =====
 \section*{项目经历}
-
 \entry{项目名称｜角色}{时间}{\toolTag{工具1}\hspace{0.18em}\toolTag{工具2}\hspace{0.18em}\toolTag{成果标签}}
-\projectIntro{项目简介一句话。}
+\projectIntro{项目简介一句话：说明用什么方法/工具，做了什么产品/项目，产生什么结果。}
 \begin{itemize}
   \resumeItem{关键词}{动作、方法、结果。}
   \resumeItem{关键词}{动作、方法、结果。}
+  \resumeItem{关键词}{动作、方法、结果。}
 \end{itemize}
-
-\section*{创业经历}
 
 \entry{项目名称｜角色}{时间}{\toolTag{工具1}\hspace{0.18em}\toolTag{工具2}}
 \projectIntro{项目简介一句话。}
 \begin{itemize}
   \resumeItem{关键词}{动作、方法、结果。}
+  \resumeItem{关键词}{动作、方法、结果。}
 \end{itemize}
 
-\section*{个人总结}
+% ===== 创业经历 =====
+\section*{创业经历}
+\entry{项目名称｜角色}{时间}{\toolTag{工具1}\hspace{0.18em}\toolTag{工具2}}
+\projectIntro{项目简介一句话。}
+\begin{itemize}
+  \resumeItem{关键词}{动作、方法、结果。}
+  \resumeItem{关键词}{动作、方法、结果。}
+\end{itemize}
 
-\begin{tabularx}{\textwidth}{@{}lX@{}}
-\textbf{维度：} & 技能 1 · 技能 2 · 技能 3 \\
-\textbf{语言：} & 英语 CET-6，听说读写优秀 \\
+% ===== 学术经历 =====
+\section*{学术经历}
+\entry{项目名称-作者身份}{时间}{}
+\begin{itemize}
+  \resumeItem{项目简介}{研究对象、问题意识和成果。}
+  \resumeItem{研究方法}{样本、访谈、田野、分析方法和结果。}
+\end{itemize}
+
+% ===== 个人总结 =====
+\section*{个人总结}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}lX@{}}
+产品与运营： & 产品规划 · 信息架构 · 用户研究 · 内容运营 · 项目管理 \\
+AI工具： & ChatGPT · Codex · Claude · GPT Image 2 \\
+设计与内容： & Figma · Photoshop · InDesign · 剪映 · Premiere Pro \\
+数据与研究： & Excel · SQL · Stata · SPSS · 问卷调研 · 用户访谈 · 主题分析 \\
+语言： & 英语CET-6，听说读写优秀
 \end{tabularx}
 
 \end{document}

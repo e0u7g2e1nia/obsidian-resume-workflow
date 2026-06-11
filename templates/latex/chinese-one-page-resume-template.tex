@@ -1,0 +1,100 @@
+\documentclass[10pt,a4paper]{ctexart}
+
+\usepackage[left=1.35cm,right=1.35cm,top=0.72cm,bottom=0.55cm]{geometry}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{array}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5pt}
+\setlist[itemize]{leftmargin=1.35em, itemsep=0pt, topsep=0pt, parsep=0pt}
+\linespread{0.97}
+
+\definecolor{tagBlue}{HTML}{4A90FF}
+\definecolor{tagBg}{HTML}{EAF2FF}
+\definecolor{toolBlue}{HTML}{3F6FAF}
+\newcommand{\eduTag}[1]{\begingroup\setlength{\fboxsep}{2pt}\colorbox{tagBg}{\textcolor{tagBlue}{\textbf{#1}}}\endgroup}
+\newcommand{\toolTag}[1]{\begingroup\setlength{\fboxsep}{1.25pt}\colorbox{tagBg}{\textcolor{toolBlue}{#1}}\endgroup}
+
+\titleformat{\section}
+  {\large\bfseries}
+  {}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+
+\newlength{\entryTitleWidth}
+\newlength{\entryDateWidth}
+\newlength{\entryToolWidth}
+\newcommand{\resumeItem}[2]{\item \textbf{#1：}#2}
+% Entry format: left title, centered tool/status tags, right date.
+% Usage: \entry{项目名称｜角色}{时间}{\toolTag{工具1}\hspace{0.18em}\toolTag{工具2}}
+% If no middle tags are needed, pass an empty third argument: \entry{标题}{时间}{}
+\newcommand{\entry}[3]{%
+  \settowidth{\entryTitleWidth}{\textbf{#1}}%
+  \settowidth{\entryDateWidth}{#2}%
+  \setlength{\entryToolWidth}{\dimexpr\textwidth-\entryTitleWidth-\entryDateWidth\relax}%
+  \noindent\makebox[\entryTitleWidth][l]{\textbf{#1}}%
+  \makebox[\entryToolWidth][c]{{\scriptsize #3}}%
+  \makebox[\entryDateWidth][r]{#2}\par\vspace{-1pt}%
+}
+\newcommand{\projectIntro}[1]{{\small #1}\vspace{0pt}}
+
+\begin{document}
+\pagestyle{empty}
+\fontsize{9.6pt}{10.9pt}\selectfont
+
+\begin{minipage}[t]{0.78\textwidth}
+  {\LARGE \textbf{姓名}}\\[2pt]
+  电话：手机号｜邮箱：\href{mailto:email@example.com}{email@example.com}｜微信：微信号\\
+  现居城市：城市｜可立即到岗｜每周 5 天｜可实习 6 个月及以上
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.16\textwidth}
+  \vspace{-8pt}
+  \raggedleft\includegraphics[width=2.2cm]{resume-photo-from-old.png}
+\end{minipage}
+\vspace{0pt}
+
+% 教育背景固定版式：
+% 1. 第一行：左侧学校名 + 浅蓝标签（985 / 双一流），右侧起止时间。
+% 2. 第二行：左侧专业、本科、学院、全日制，右侧城市。
+% 3. 之后分行写 GPA/排名、荣誉奖项、主要课程。
+% 不要压缩成一条长横排信息。
+\section*{教育背景}
+
+\textbf{学校名称}\hspace{0.4em}\eduTag{985}\hspace{0.25em}\eduTag{双一流}\hfill 2023年09月 -- 2027年07月\\
+专业 本科｜学院 全日制\hfill 城市\\
+GPA：3.90/4.0（专业第二）\\
+荣誉奖项：国家奖学金（2024-2025年度）、二等奖学金（2023-2024年度）、三等奖学金（2022-2023年度）\\
+主要课程：社会统计学、统计软件应用、社会调查方法、质性研究方法
+
+
+\section*{项目经历}
+
+\entry{项目名称｜角色}{时间}{\toolTag{工具1}\hspace{0.18em}\toolTag{工具2}\hspace{0.18em}\toolTag{成果标签}}
+\projectIntro{项目简介一句话。}
+\begin{itemize}
+  \resumeItem{关键词}{动作、方法、结果。}
+  \resumeItem{关键词}{动作、方法、结果。}
+\end{itemize}
+
+\section*{创业经历}
+
+\entry{项目名称｜角色}{时间}{\toolTag{工具1}\hspace{0.18em}\toolTag{工具2}}
+\projectIntro{项目简介一句话。}
+\begin{itemize}
+  \resumeItem{关键词}{动作、方法、结果。}
+\end{itemize}
+
+\section*{个人总结}
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\textbf{维度：} & 技能 1 · 技能 2 · 技能 3 \\
+\textbf{语言：} & 英语 CET-6，听说读写优秀 \\
+\end{tabularx}
+
+\end{document}

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "投递记录",
+  "behavior": "create",
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}}｜投递记录｜待整理｜{{title}}",
+  "path": "01实习/投递记录",
+  "noteContentFormat": "# {{title}}\n\n## 自动整理区\n\n> 剪藏后先检查本区内容。若自动提取不准，以原始JD为准手动修正。\n\n### 岗位信息\n\n- 公司：\n- 岗位：{{title}}\n- 城市：\n- 渠道：\n- 邮箱 / 投递方式：\n\n### 职位描述\n\n{{\"Extract only the job responsibilities from the page content. Return concise Chinese markdown bullet points. If no job responsibilities are found, return an empty string.\"}}\n\n### 职位要求\n\n{{\"Extract only the job requirements from the page content. Return concise Chinese markdown bullet points. If no job requirements are found, return an empty string.\"}}\n\n### 加分项 / 特别偏好\n\n{{\"Extract bonus requirements, preferred hobbies, interests, content genres, tools, availability requirements, or special preferences from this JD. Return concise Chinese markdown bullet points. If none are found, return an empty string.\"}}\n\n### 简历匹配提示\n\n{{\"Based on this JD, list 3-6 resume tailoring keywords in Chinese. Focus on abilities, tools, and experience types. Return markdown bullet points only.\"}}\n\n## 图片与素材\n\n- 分享图：{{image}}\n- 页面图片：{{selector:img?src|join:\"\\n- \"}}\n\n![分享图]({{image}})\n\n## 原始JD\n\n来源：{{url}}\n\n{{content}}\n\n## 投递记录\n\n- {{date|date:\"YYYY-MM-DD\"}}：剪藏岗位 JD，待分析。\n- 投递渠道：\n- 账号：\n- 备注：\n\n## 简历策略\n\n- \n\n## 后续进展\n\n",
+  "properties": [
+    {
+      "name": "type",
+      "value": "投递记录",
+      "type": "text"
+    },
+    {
+      "name": "company",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "position",
+      "value": "{{title}}",
+      "type": "text"
+    },
+    {
+      "name": "status",
+      "value": "待分析",
+      "type": "text"
+    },
+    {
+      "name": "direction",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "apply_date",
+      "value": "{{date|date:\"YYYY-MM-DD\"}}",
+      "type": "date"
+    },
+    {
+      "name": "priority",
+      "value": "中",
+      "type": "text"
+    },
+    {
+      "name": "resume",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "source",
+      "value": "{{url}}",
+      "type": "text"
+    },
+    {
+      "name": "source_image",
+      "value": "{{image}}",
+      "type": "text"
+    },
+    {
+      "name": "channel",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "city",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "clipped_at",
+      "value": "{{time}}",
+      "type": "text"
+    }
+  ],
+  "triggers": []
+}

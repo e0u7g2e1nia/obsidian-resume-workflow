@@ -38,6 +38,35 @@ Write education as a compact block, not bullets. Include university, dates, majo
 
 For LaTeX/PDF output, do not define education layout inside this skill. Use the LaTeX resume template as the source of truth: `01实习/简历模板/中文一页简历-LaTeX模板.tex`. When generating or updating PDF output, preserve the template's fixed education block instead of inventing a new layout.
 
+### PDF delivery copies
+
+When generating or updating PDF resume output, keep two PDF copies:
+
+1. Internal management copy under `01实习/简历输出/` using the workflow name:
+   `YYYY-MM-DD｜简历输出｜公司｜岗位.pdf`
+2. External application copy under `01实习/投递用PDF/` using the HR-facing name:
+   `复旦大学-大三-随时到岗-每周五天-6个月以上-岗位名.pdf`
+
+The Markdown and LaTeX files remain under `01实习/简历输出/` as the content and layout masters. The external application PDF is only a copied delivery artifact and does not need separate source files.
+
+Add wikilink fields to the resume output Markdown YAML whenever corresponding files exist:
+
+```yaml
+pdf: "[[01实习/简历输出/YYYY-MM-DD｜简历输出｜公司｜岗位.pdf]]"
+delivery_pdf: "[[01实习/投递用PDF/复旦大学-大三-随时到岗-每周五天-6个月以上-岗位名.pdf]]"
+record: "[[01实习/投递记录/YYYY-MM-DD｜投递记录｜公司｜岗位]]"
+```
+
+If a job application record exists, also add or update its `delivery_pdf` field so Dataview can connect the record, resume Markdown, internal PDF, and external PDF.
+
+### PDF spacing rule
+
+When generating or updating a LaTeX/PDF resume, keep the resume to exactly one page and make the spacing as large as possible within that constraint.
+
+Use the LaTeX template's spacing block as the source of truth. After compiling, check the PDF page count. If it is still one page, progressively increase line spacing, list spacing, and section spacing until the next increase would create a second page. Keep the last one-page version. If the first compile is two pages, reduce spacing only as much as needed to return to one page.
+
+Do not leave a resume in an overly compressed layout merely because it fits. The preferred output is the most readable one-page PDF, not the densest one-page PDF.
+
 ### Personal summary
 
 Place this section at the end. Group by dimensions such as product, AI tools, data/technical tools, design/content tools, and language. Format each line as:

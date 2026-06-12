@@ -7,6 +7,10 @@
 % 3. 项目标题行格式为：左侧项目名｜角色，中间工具标签组，右侧时间。
 % 4. 如果某段经历没有工具标签，第三个参数留空：\entry{标题}{时间}{}
 % 5. 证件照默认与 tex 放在同一目录，文件名可在 \includegraphics 处替换。
+% 6. 行距原则：PDF 必须保持一页；在一页内尽可能放大行距、列表间距和分区间距。
+%    操作方式：先用下方“当前偏宽松默认值”编译；若变成 2 页，再逐步降低
+%    \setlist 的 itemsep/topsep、\linespread、\titlespacing 和 \fontsize 第二参数；
+%    若仍是 1 页，则继续微增这些参数，直到下一档变 2 页，保留最后一个 1 页版本。
 
 \usepackage[left=1.18cm,right=1.18cm,top=0.58cm,bottom=0.48cm]{geometry}
 \usepackage{tabularx}
@@ -21,8 +25,10 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \setlength{\tabcolsep}{0pt}
-\setlist[itemize]{leftmargin=1.22em, itemsep=0.85pt, topsep=0.45pt, parsep=0pt, partopsep=0pt}
-\linespread{1.095}
+% ===== 一页最大行距调节区 =====
+% 当前偏宽松默认值来自已验证的一页简历样式；不同简历内容长度不同，生成 PDF 时应重新测试。
+\setlist[itemize]{leftmargin=1.22em, itemsep=2.0pt, topsep=1.28pt, parsep=0pt, partopsep=0pt}
+\linespread{1.275}
 
 % ===== 标签样式 =====
 \definecolor{tagBlue}{HTML}{4A90FF}
@@ -35,7 +41,7 @@
 \titleformat{\section}
   {\large\bfseries}
   {}{0pt}{}[\vspace{0.6pt}\titlerule]
-\titlespacing*{\section}{0pt}{2.6pt}{1.4pt}
+\titlespacing*{\section}{0pt}{4.2pt}{2.8pt}
 
 % ===== 经历条目样式 =====
 \newlength{\entryTitleWidth}
@@ -54,7 +60,7 @@
 
 \begin{document}
 \pagestyle{empty}
-\fontsize{8.48pt}{10.55pt}\selectfont
+\fontsize{8.55pt}{12.59pt}\selectfont
 
 % ===== 个人信息区 =====
 \begin{minipage}[t]{0.79\textwidth}
